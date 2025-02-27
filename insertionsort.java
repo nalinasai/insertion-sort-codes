@@ -1,27 +1,43 @@
+import java.lang.System;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 public class insertionsort{
     public static void main(String args[]){
-        // Initialize the array to be sorted
-        int[] array = {2,4,3,1,7};
+        
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Enter the input: ");
+        String stringinput= scan.nextLine();
+        String[] stringsplit = stringinput.split(" ");
 
         // Get the size of the array
-        int sizeofarray = array.length;
+        int n = stringsplit.length;
+
+        ArrayList<Integer> integerList = new ArrayList<>();
+
+        for(int k=0; k<n; k++){
+            int num = Integer.parseInt(stringsplit[k]);
+            integerList.add(num);
+        }
     
-        for(int i=1; i<sizeofarray; i++){
+        for(int i=1; i<n; i++){
             // Store the current element as the key
-            int key = array[i];
+            int key = integerList.get(i);
             int j = i-1;
 
-            while(j>=0 && key<array[j]){
-                array[j+1] = array[j];
+            while(j>=0 && key<integerList.get(j)){
+                integerList.set(j+1,integerList.get(j));
                 j--;
             }
             // Insert the key at the correct position in the sorted part of the array
-            array[j+1] = key;
+            integerList.set(j+1, key);
 
         }
 
-        for(int num: array){
-            System.out.print(num + " ");
+        System.out.print("After sorting: ");
+        for(int number: integerList){
+            System.out.print(number + " ");
         }
     }
 }
